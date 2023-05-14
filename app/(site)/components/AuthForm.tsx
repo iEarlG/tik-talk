@@ -1,9 +1,13 @@
 "use client";
 
-import Button from "@/app/Components/Button";
-import Input from "@/app/Components/Inputs/Input";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+
+import Button from "@/app/Components/Button";
+import Input from "@/app/Components/Inputs/Input";
+import AuthSocialBtn from "./AuthSocialBtn";
+
+import { BsGithub, BsGoogle, BsMeta } from "react-icons/bs";
 
 type authVariant = "Login" | "Register";
 
@@ -66,6 +70,39 @@ const AuthForm = () => {
                         </Button>
                     </div>
                 </form>
+
+                <div className="mt-6">
+                    <div className="relative">
+                        <div className="absolute flex items-center inset-0">
+                            <div className="w-full border-t border-gray-300" />
+                        </div>
+
+                        <div className="relative flex justify-center text-sm">
+                            <span className="bg-white px-2 text-gray-500">
+                                Or continue with
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="flex mt-6 gap-2">
+                        <AuthSocialBtn icon={BsGoogle} onClick={() => socialAction('google')} />
+                        <AuthSocialBtn icon={BsGithub} onClick={() => socialAction('github')} />
+                        <AuthSocialBtn icon={BsMeta} onClick={() => socialAction('meta')} />
+                    </div>
+                </div>
+
+                <div className="flex justify-center gap-2 text-sm mt-6 px-2 text-gray-500">
+                    <div>
+                        {variant === "Login" ? "New to TikTalk?" : "Already have an account?"}
+                    </div>
+
+                    <div 
+                        className="underline cursor-pointer" 
+                        onClick={authVariantHandler}
+                    >
+                        {variant === "Login" ? "Create an Account" : "Sign in"}
+                    </div>
+                </div>
             </div>
         </div>
     );
