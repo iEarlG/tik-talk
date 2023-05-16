@@ -1,6 +1,8 @@
 import './globals.css'
 import { Roboto_Serif } from 'next/font/google'
 
+import ToasterContext from './context/toasterContext';
+
 const roboto = Roboto_Serif({ 
   weight: ["400", "500", "600", "700", "800"],
   subsets: ['latin']
@@ -18,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}
+      >
+        <ToasterContext />
+        {children}
+        </body>
     </html>
   )
 }
