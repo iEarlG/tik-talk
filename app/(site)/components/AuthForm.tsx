@@ -4,6 +4,7 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 import Button from "@/app/Components/Button";
 import Input from "@/app/Components/Inputs/Input";
@@ -40,17 +41,43 @@ const AuthForm = () => {
 
         if (variant === "Register") {
             axios.post("/api/register", data)
-            .catch(() => toast.error("Something went wrong!"));
+            .catch(() => toast.error("Something went wrong!"))
+            .finally(() => setIsLoading(false));
         }
         if (variant === "Login") {
-            // Route Login
+            signIn("credentials", {
+                ...data,
+                redirect: false,
+            })
+            .then((callback) => {
+                if (callback?.error) {
+                    toast.error("Invalid credentials");
+                }
+
+                if (callback?.ok && !callback?.error) {
+                    toast.success("Logged in successfully");
+                }
+            })
+            .finally(() => setIsLoading(false));
         }
     };
 
     const socialAction = (action: string) => {
         setIsLoading(true);
 
-        // Route social action sign in
+        signIn(action, {
+            redirect: false,
+        })
+        .then((callback) => {
+            if (callback?.error) {
+                toast.error("Invalid credentials!");
+            }
+
+            if (callback?.ok && !callback?.error) {
+                toast.success("Logged in successfully");
+            }
+        })
+        .finally(() => setIsLoading(false));
     };
 
     return ( 
