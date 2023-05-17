@@ -1,10 +1,11 @@
 "use client";
 
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { signIn } from "next-auth/react";
 
 import Button from "@/app/Components/Button";
 import Input from "@/app/Components/Inputs/Input";
@@ -15,8 +16,18 @@ import { BsGithub, BsGoogle, BsMeta } from "react-icons/bs";
 type authVariant = "Login" | "Register";
 
 const AuthForm = () => {
+    const session = useSession();
+    const router = useRouter();
     const [variant, setVariant] = useState<authVariant>("Login");
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+      if (session?.status === "authenticated") {
+        router.push("/users");
+      }
+    }, [session?.status, router]);
+    
+
 
     const authVariantHandler = useCallback(() => {
         if (variant === "Login") { 
