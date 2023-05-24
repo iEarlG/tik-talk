@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 
 import { HiChat } from "react-icons/hi";
-import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import { CgLogOut } from "react-icons/cg";
 import { FiUsers } from "react-icons/fi";
 
 import useConversation from "./useConversation";
@@ -29,7 +29,7 @@ const useRoutes = () => {
             label: "Sign Out",
             href: "#",
             onClick: () => signOut(),
-            icon: MdOutlineKeyboardArrowLeft,
+            icon: CgLogOut,
         }
     ], [pathname, conversationId,]);
 
