@@ -5,7 +5,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import useConversation from "@/app/hooks/useConversation";
 
-import { HiPhoto } from "react-icons/hi2";
+import { HiPaperAirplane, HiPhoto } from "react-icons/hi2";
 import MessageInputs from "./MessageInputs";
 
 const ConversationForm = () => {
@@ -47,6 +47,15 @@ const ConversationForm = () => {
                     required
                     placeholder="Type a message"
                 />
+                <button 
+                    type="submit"
+                    className="rounded-full p-2 bg-orange-500 cursor-pointer hover:bg-orange-600 transition"
+                >
+                    <HiPaperAirplane
+                        size={18}
+                        className="text-white"
+                    />
+                </button>
             </form>
         </div>
     );
