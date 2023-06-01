@@ -26,15 +26,15 @@ const MessageBox: React.FC<MessageBoxProps> = ({
     .map((user) => user.name)
     .join(", ");
 
-    const classes = clsx(`flex gap-3 p-4`,
+    const classes = clsx("flex gap-3 p-4",
         isOwn && "justify-end",
     );
     const classAvatar = clsx(isOwn && "order-2");
-    const classBody = clsx(`flex flex-col gap-2`,
+    const classBody = clsx("flex flex-col gap-2",
         isOwn && "items-end",
     );
-    const classMessage = clsx(`text-sm w-fit overflow-hidden`,
-        isOwn ? "bg-orange-500 text-white" : "text-gray-100",
+    const classMessage = clsx("text-sm w-fit overflow-hidden",
+        isOwn ? "bg-orange-500 text-white" : "bg-gray-100",
         data.image ? "rounded-md p-0" : "rounded-full py-2 px-3"
     );
 
@@ -70,6 +70,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({
                         </div>
                     )}
                 </div>
+                {isLast && isOwn && seenLists.length > 0 && (
+                    <div className="text-xs font-light text-gray-500">
+                        {`Seen by ${seenLists}`}
+                    </div>
+                )}
             </div>
         </div>
     );
