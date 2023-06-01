@@ -2,11 +2,12 @@
 
 import axios from "axios";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { CldUploadButton } from "next-cloudinary";
 
 import useConversation from "@/app/hooks/useConversation";
+import MessageInputs from "./MessageInputs";
 
 import { HiPaperAirplane, HiPhoto } from "react-icons/hi2";
-import MessageInputs from "./MessageInputs";
 
 const ConversationForm = () => {
     const { conversationId } = useConversation();
@@ -32,9 +33,21 @@ const ConversationForm = () => {
         });
     }
 
+    const handleUpload = (result: any) => {
+        axios.post("/api/messages", {
+            image: result?.info?.secure_url,
+            conversationId
+        });
+    }
+
     return ( 
         <div className="w-full flex items-center py-4 px-4 bg-white border-t gap-2 lg:gap-4">
-            <HiPhoto size={30} className="text-orange-500" />
+            <CldUploadButton
+                onUpload={handleUpload}
+                uploadPreset="bupuuh3y"
+            >
+                <HiPhoto size={30} className="text-orange-500" />
+            </CldUploadButton>
 
             <form
                 onSubmit={handleSubmit(onSubmit)}
