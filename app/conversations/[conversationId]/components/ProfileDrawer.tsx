@@ -10,7 +10,7 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 
 import useOtherUser from "@/app/hooks/useOtherUser";
 import Avatar from "@/app/Components/Avatar";
-import Modal from "@/app/Components/Modal";
+import ConfirmModals from "./ConfirmModals";
 
 interface ProfileDrawerProps {
     data: Conversation & {
@@ -26,7 +26,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
     onClose
 }) => {
     const otherUser = useOtherUser(data);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
     const joinedDate = useMemo(() => {
         return format(new Date(otherUser.createdAt), "PP");
@@ -48,14 +48,10 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 
     return ( 
         <>
-            <Modal 
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-            >
-                <div className="bg-white p-5">
-                    <p>Modal</p>
-                </div>
-            </Modal>
+            <ConfirmModals 
+                isOpen={isConfirmOpen}
+                onClose={() => setIsConfirmOpen(false)}
+            />
             <Transition.Root
                 show={isOpen}
                 as={Fragment}
@@ -114,7 +110,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                                     <div className="text-sm text-gray-500">{activeStatus}</div>
                                                     <div className="flex gap-10 my-8">
                                                         <div
-                                                            onClick={() => setIsModalOpen(true)}
+                                                            onClick={() => setIsConfirmOpen(true)}
                                                             className="flex flex-col items-center gap-3 cursor-pointer hover:opacity-75"
                                                         >
                                                             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-100">
