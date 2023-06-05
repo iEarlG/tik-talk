@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import clsx from "clsx";
 
-import { Conversation, User, Message } from "@prisma/client";
-
 import { FullConversationType } from "@/app/types";
+
 import useOtherUser from "@/app/hooks/useOtherUser";
 import Avatar from "@/app/Components/Avatar";
+import GroupAvatars from "@/app/Components/GroupAvatars";
 
 interface ConversationBoxProps {
     data: FullConversationType,
@@ -74,7 +74,11 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
             selected ? "bg-neutral-100" : "hover:bg-white")}
             onClick={handleClick}
         >
-            <Avatar user={otherUser} />
+            {data.isGroup ? (
+                <GroupAvatars users={data.users} />
+            ) : (
+                <Avatar user={otherUser} />
+            )}
 
             <div className="min-w-0 flex-1">
                 <div className="focus:outline-none">
