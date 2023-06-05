@@ -11,6 +11,7 @@ import { User } from "@prisma/client";
 import Modal from "@/app/Components/Modal";
 import Input from "@/app/Components/Inputs/Input";
 import SelectPeople from "@/app/Components/Inputs/SelectPeople";
+import Button from "@/app/Components/Button";
 
 interface GroupChatModalsProps {
     users: User[];
@@ -90,6 +91,23 @@ const GroupChatModals: React.FC<GroupChatModalsProps> = ({
                             />
                         </div>
                     </div>
+                </div>
+
+                <div className="flex items-center justify-end gap-3 mt-6">
+                    <Button
+                        disabled={isLoading}
+                        onClick={onClose}
+                        type="button"
+                        secondary
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        disabled={isLoading}
+                        type="submit"
+                    >
+                        Create
+                    </Button>
                 </div>
             </form>
         </Modal>
