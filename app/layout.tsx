@@ -3,10 +3,11 @@ import { Roboto_Serif } from 'next/font/google'
 
 import ToasterContext from './context/ToasterContext';
 import AuthContext from './context/AuthContext';
+import ActiveStatus from './Components/ActiveStatus';
 
 const roboto = Roboto_Serif({ 
   weight: ["400", "500", "600", "700", "800"],
-  subsets: ['latin']
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <AuthContext>
           <ToasterContext />
+          <ActiveStatus />
           {children}
         </AuthContext>
         </body>
