@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 
 import getCurrentUsers from "@/app/actions/getCurrentUsers";
+import { pusherServer } from "@/app/libs/pusher";
 
 interface IParams {
     conversationId?: string;
@@ -39,6 +40,12 @@ export async function DELETE(
                 userIds: {
                     hasSome: [currentUser.id]
                 }
+            }
+        });
+
+        existingConversations.users.forEach((user) => {
+            if (user.email) {
+                pusherServer.trigger(user.email, "conversation:removed", existingConversations);
             }
         });
 
