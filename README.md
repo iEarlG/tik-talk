@@ -28,8 +28,8 @@ Tik-Talk, powered by Next JS 13, represents the future of chat applications. Its
 
 **Key Images:**
 <div position="center" >
-<img src="https://github.com/iEarlG/tik-talk/assets/91045673/6af92bfd-c012-41b2-a69f-ae109ed4759d" />
+<img src="https://github.com/iEarlG/tik-talk/assets/91045673/0a1f2760-f0a0-4ae4-b5b2-58e30d348676" />
 <img src="https://github.com/iEarlG/tik-talk/assets/91045673/ffc8a212-cc12-4abf-af58-b67d5e5fddf2" />
 <img src="https://github.com/iEarlG/tik-talk/assets/91045673/52b35ae6-2947-4efd-af95-0c1ad5fc215d" />
-<img src="https://github.com/iEarlG/tik-talk/assets/91045673/0a1f2760-f0a0-4ae4-b5b2-58e30d348676" />
+<img src="https://github.com/iEarlG/tik-talk/assets/91045673/6af92bfd-c012-41b2-a69f-ae109ed4759d" />
 </div>
