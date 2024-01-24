@@ -1,5 +1,6 @@
-import './globals.css'
-import { Roboto_Serif } from 'next/font/google'
+import './globals.css';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Roboto_Serif } from 'next/font/google';
 
 import ToasterContext from './context/ToasterContext';
 import AuthContext from './context/AuthContext';
@@ -27,6 +28,7 @@ export default function RootLayout({
           <ToasterContext />
           <ActiveStatus />
           {children}
+          <SpeedInsights />
         </AuthContext>
         </body>
     </html>
